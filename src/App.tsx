@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage/HomePage'
+import MakerPage from './pages/MakerPage/MakerPage'
+import CustomerPages from './pages/CustomerPages/CustomerPages'
+import JobDetails from './pages/JobDetailsPage/JobDetailsPage'
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
+import NavigationBar from './pages/Navigation/Navigation'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route path='/' element={<NavigationBar />}>
+        <Route index element={<HomePage />} />
+        <Route path='customer' element={<CustomerPages />} />
+        <Route path='maker/jobs/filter' element={<MakerPage />} />
+        <Route path='maker/jobs/details/:id' element={<JobDetails />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
